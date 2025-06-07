@@ -1,8 +1,10 @@
+import Layout from "../../components/Layout/layout";
+
 function Home() {
     return(
-        <div className="bg-amber-400">
+        <Layout>
             Home
-        </div>
+        </Layout>
     )
 }
 
