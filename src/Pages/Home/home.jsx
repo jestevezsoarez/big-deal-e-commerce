@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout/layout";
 import Card from "../../components/Card/card";
+import ProductDetail from "../../components/ProductDetail/productDetail";
 
 function Home() {
     const [items, setItems] = useState(null);
@@ -14,7 +15,6 @@ function Home() {
 
     return(
         <Layout>
-            Home
             <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
               {
                 items?.map((item) => (
@@ -25,6 +25,7 @@ function Home() {
                 ))
               }
             </div>
+            <ProductDetail />
         </Layout>
     )
 }

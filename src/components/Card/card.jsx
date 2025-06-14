@@ -17,7 +17,7 @@ const Card = ({ item }) => {
         />
       </figure>
       <button 
-        className="bg-blue-400 hover:bg-blue-500 text-white w-full font-medium rounded-md cursor-pointer"
+        className="bg-blue-400 hover:bg-blue-500 text-white w-full font-medium rounded-md cursor-pointer py-1"
         onClick={() => context.setCount(context.count + 1)}  
       >        
           Add to Cart
