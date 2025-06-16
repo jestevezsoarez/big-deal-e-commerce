@@ -81,7 +81,7 @@ const Navbar = () => {
         <li className={`text-white flex gap-1 ${linkStyle}`}>
           <ShoppingCartIcon 
             className="size-6 text-gray-300" /> 
-            {context.count}
+            <div>{context.count}</div>
         </li>
       </ul>
     </nav>

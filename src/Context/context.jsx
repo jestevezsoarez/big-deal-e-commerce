@@ -7,11 +7,19 @@ export const ShoppingCartProvider = ({children}) => {
     // Counter in Shopping Cart
     const [count, setCount] = useState(0);
 
+    // Show/Close Product Detail
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+    const openProductDetail = () => setIsProductDetailOpen(true);
+    const closeProductDetail = () => setIsProductDetailOpen(false);
+
     return (
         <ShoppingCartContext.Provider
             value={{
                 count,
-                setCount
+                setCount,
+                openProductDetail,
+                closeProductDetail,
+                isProductDetailOpen
             }}
         >
             {children}
