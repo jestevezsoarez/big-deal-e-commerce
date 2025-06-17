@@ -5,7 +5,6 @@ import { ShoppingCartContext } from "../../Context/context";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  console.log(context.isProductDetailOpen);
 
   if (context.isProductDetailOpen) {
     return (
