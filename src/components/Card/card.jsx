@@ -9,12 +9,14 @@ const Card = ({ item }) => {
     context.setProductToShow(item);
   }
 
-  const addProductToCart = (item) => {
+  const addProductToCart = (event, item) => {
+    event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([
       ...context.cartProducts, 
       item
     ]);
+    context.openCheckoutSideMenu();
   }
 
   return (
@@ -34,7 +36,7 @@ const Card = ({ item }) => {
       </figure>
       <button 
         className="bg-blue-400 hover:bg-blue-500 text-white w-full font-medium rounded-md cursor-pointer py-1"
-        onClick={() => addProductToCart(item)}  
+        onClick={(event) => addProductToCart(event, item)}  
       >        
           Add to Cart
       </button>
