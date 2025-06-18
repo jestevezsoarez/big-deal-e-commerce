@@ -9,6 +9,14 @@ const Card = ({ item }) => {
     context.setProductToShow(item);
   }
 
+  const addProductToCart = (item) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([
+      ...context.cartProducts, 
+      item
+    ]);
+  }
+
   return (
     <div 
       className="bg-white cursor-pointer w-56 h-60 rounded-lg mb-5"
@@ -26,7 +34,7 @@ const Card = ({ item }) => {
       </figure>
       <button 
         className="bg-blue-400 hover:bg-blue-500 text-white w-full font-medium rounded-md cursor-pointer py-1"
-        onClick={() => context.setCount(context.count + 1)}  
+        onClick={() => addProductToCart(item)}  
       >        
           Add to Cart
       </button>
