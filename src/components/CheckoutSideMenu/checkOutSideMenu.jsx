@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context/context";
+import OrderCard from "../OrderCard/orderCard";
 import "./styles.css";
 
 const CheckOutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
+  console.log(context.cartProducts)
 
     return (
       <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex flex-col fixed bg-white right-0 border border-black rounded-lg`}>
@@ -14,6 +16,20 @@ const CheckOutSideMenu = () => {
             className="size-6 text-black cursor-pointer"
             onClick={() => context.closeCheckoutSideMenu()}
           />
+        </div>
+        <div className="px-6">
+        {
+          context.cartProducts.map(product => 
+            (
+              <OrderCard
+              key = {product.id} 
+              title = {product.title.slice(0, 20)}
+              imageUrl = {product.image}
+              price = {product.price}
+              />
+            )
+          )
+        }
         </div>
       </aside>
     );
