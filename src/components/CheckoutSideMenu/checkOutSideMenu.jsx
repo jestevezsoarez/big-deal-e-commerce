@@ -38,9 +38,9 @@ const CheckOutSideMenu = () => {
           )
         }
         <div className="px-6">
-          <p>
-            <span>Total:</span>
-            <span>$ {totalPurchase(context.cartProducts)}</span>
+          <p className="flex justify-between items-center">
+            <span className="font'light">Total:</span>
+            <span className="font-medium text-2xl">$ {totalPurchase(context.cartProducts)}</span>
           </p>
         </div>      
       </div>
