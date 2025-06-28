@@ -2,19 +2,37 @@ import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context/context";
 import OrderCard from "../OrderCard/orderCard";
-import {totalPurchase} from "../../utils";
+import { totalPurchase } from "../../utils";
 import "./styles.css";
-  
-const CheckOutSideMenu = () => {    
+
+const CheckOutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
-    const newProducts = context.cartProducts.filter(product => product.id !== id);
+    const newProducts = context.cartProducts.filter(
+      (product) => product.id !== id
+    );
     context.setCartProducts(newProducts);
-  }
+  };
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: "28.06.25",
+      products: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: totalPurchase(context.cartProducts),
+    };
+
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+  };
 
   return (
-    <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex flex-col fixed bg-white right-0 border border-black rounded-lg`}>
+    <aside
+      className={`${
+        context.isCheckoutSideMenuOpen ? "flex" : "hidden"
+      } checkout-side-menu flex flex-col fixed bg-white right-0 border border-black rounded-lg`}
+    >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Order</h2>
         <XMarkIcon
@@ -22,30 +40,34 @@ const CheckOutSideMenu = () => {
           onClick={() => context.closeCheckoutSideMenu()}
         />
       </div>
-      <div className="px-6 overflow-y-scroll">
-        {
-          context.cartProducts.map(product => 
-            (
-              <OrderCard
-              key = {product.id}
-              id = {product.id} 
-              title = {product.title.slice(0, 20)}
-              imageUrl = {product.image}
-              price = {product.price}
-              handleDelete = {handleDelete}
-              />
-            )
-          )
-        }
-        <div className="px-6">
-          <p className="flex justify-between items-center">
-            <span className="font'light">Total:</span>
-            <span className="font-medium text-2xl">$ {totalPurchase(context.cartProducts)}</span>
-          </p>
-        </div>      
+      <div className="px-6 overflow-y-scroll flex-1">
+        {context.cartProducts.map((product) => (
+          <OrderCard
+            key={product.id}
+            id={product.id}
+            title={product.title.slice(0, 20)}
+            imageUrl={product.image}
+            price={product.price}
+            handleDelete={handleDelete}
+          />
+        ))}
+      </div>
+      <div className="px-6 mb-6">
+        <p className="flex justify-between items-center mb-2">
+          <span className="font'light">Total:</span>
+          <span className="font-medium text-2xl">
+            ${totalPurchase(context.cartProducts)}
+          </span>
+        </p>
+        <button
+          className="w-full bg-black text-white rounded-lg py-3 "
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </aside>
   );
-}
+};
 
 export default CheckOutSideMenu;
