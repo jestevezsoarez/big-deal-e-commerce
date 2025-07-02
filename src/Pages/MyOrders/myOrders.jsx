@@ -5,23 +5,23 @@ import Layout from "../../components/Layout/layout";
 import OrderCards from "../../components/OrderCards/orderCards";
 
 function MyOrders() {
-    const context = useContext(ShoppingCartContext);
+  const context = useContext(ShoppingCartContext);
 
-    return (
-        <Layout>
-            MyOrders
-            {
-                context.order.map((order, index) => (
-                    <Link key={index} to={`/my-orders/${order.id}`}>
-                        <OrderCards
-                            totalProducts={order.totalPrice}
-                            totalPrice={order.totalProducts}
-                        />                    
-                    </Link>
-                ))
-            }                       
-        </Layout>
-    )
+  return (
+    <Layout>
+      <div className="flex items-center justify-center relative w-80">
+        <h1>My Orders</h1>
+      </div>
+      {context.order.map((order, index) => (
+        <Link key={index} to={`/my-orders/${order.id}`}>
+          <OrderCards
+            totalProducts={order.totalPrice}
+            totalPrice={order.totalProducts}
+          />
+        </Link>
+      ))}
+    </Layout>
+  );
 }
 
 export default MyOrders;
