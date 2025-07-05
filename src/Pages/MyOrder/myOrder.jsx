@@ -8,8 +8,8 @@ import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 function MyOrder() {
   const context = useContext(ShoppingCartContext);
     const path = window.location.pathname
-    const id = path.substring(path.lastIndexOf('/') + 1);
-    console.log(id)
+    let id = path.substring(path.lastIndexOf('/') + 1);
+    if (id === 'last') id = context.order?.length - 1;
 
   return (
     <Layout>
@@ -21,8 +21,7 @@ function MyOrder() {
       </div>
       <div className="flex flex-col w-80">
         {
-          // take the last one with slice
-          context.order?.slice(-1)[0].products.map((product) => (
+          context.order?.[id]?.products.map((product) => (
             <OrderCard
               key={product.id}
               id={product.id}
