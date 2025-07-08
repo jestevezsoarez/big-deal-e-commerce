@@ -17,6 +17,18 @@ export const ShoppingCartProvider = ({children}) => {
     // Get products by title
     const [searchByTitle, setSearchByTitle] = useState(null);
 
+    // Filtered products
+    const [filteredItems, setFilteredItems] = useState(null);
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+    }
+
+    useEffect(() => {
+        if (searchByTitle) {
+            setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+        }
+    }, [searchByTitle]);
+
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
 
@@ -59,7 +71,9 @@ export const ShoppingCartProvider = ({children}) => {
                 items,
                 setItems,
                 searchByTitle,
-                setSearchByTitle
+                setSearchByTitle,
+                filteredItems,
+                setFilteredItems
             }}
         >
             {children}
