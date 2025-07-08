@@ -14,6 +14,9 @@ export const ShoppingCartProvider = ({children}) => {
             .catch(error => console.log(error))
     }, []);
 
+    // Get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
 
@@ -31,7 +34,7 @@ export const ShoppingCartProvider = ({children}) => {
     // Product Detail - Show Product
     const [produtToShow, setProductToShow] = useState({});
 
-        // Checkout Side Menu - Open/Close
+    // Checkout Side Menu - Open/Close
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
@@ -54,7 +57,9 @@ export const ShoppingCartProvider = ({children}) => {
                 order,
                 setOrder,
                 items,
-                setItems
+                setItems,
+                searchByTitle,
+                setSearchByTitle
             }}
         >
             {children}
