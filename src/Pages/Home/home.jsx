@@ -11,24 +11,27 @@ function Home() {
     if (context.searchByTitle?.length > 0) {
         if (context.filteredItems?.length > 0) {
              return (
-                context.filteredItems?.map((item) => (
+              <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+                {context.filteredItems?.map((item) => (
                     <Card key={item.id} item={item} />
-                ))
+                ))}
+              </div>
             )
         } else {
             return (
-                <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                    <p class="font-bold">Informational message</p>
-                    <p class="text-sm">Some additional text to explain said message.</p>
+                <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 w-5/6" role="alert">
+                    <p className="font-bold">No products found</p>
+                    <p className="text-sm">There are no matches for the search term {context.searchByTitle}</p>
                 </div>
-            )
-            
+            )            
         }       
     } else {
         return (
-            context.items?.map((item) => (
+          <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+            {context.items?.map((item) => (
                 <Card key={item.id} item={item} />
-            ))
+            ))}
+          </div>
         )
     }
   }
@@ -44,9 +47,9 @@ function Home() {
         className="rounded-lg border-black w-80 p-4 mb-4"
         onChange={(event) => context.setSearchByTitle(event.target.value)}
       />
-      <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+      
         {renderView()}
-      </div>
+      
       <ProductDetail />
     </Layout>
   );
