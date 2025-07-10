@@ -34,12 +34,19 @@ export const ShoppingCartProvider = ({children}) => {
             return items;
     }
 
+    const filteredItemsByCategoryAndTitle = (items, searchByTitle, searchByCategory) => {
+        return filteredItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+    }
+
     useEffect(() => {
-        if (searchByTitle) {       
+        if (searchByTitle && !searchByCategory) {       
             setFilteredItems(filteredItemsByTitle(items, searchByTitle));
         }
-        if (searchByCategory) {
+        if (searchByCategory && !searchByTitle) {
             setFilteredItems(filteredItemsByCategory(items, searchByCategory));
+        }
+        if (searchByTitle && searchByCategory) {
+            setFilteredItems(filteredItemsByCategoryAndTitle(items, searchByTitle, searchByCategory));
         }
     }, [searchByTitle, searchByCategory]);
 
