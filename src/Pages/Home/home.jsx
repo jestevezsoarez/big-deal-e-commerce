@@ -24,16 +24,24 @@ function Home() {
                     <p className="text-sm">There are no matches for the search term {context.searchByTitle}</p>
                 </div>
             )            
-        }       
-    } else {
+        }
+      } else if (context.searchByCategory) {
         return (
           <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
-            {context.items?.map((item) => (
-                <Card key={item.id} item={item} />
+            {context.filteredItems?.map((item) => (
+              <Card key={item.id} item={item} />
             ))}
           </div>
         )
-    }
+      } else {     
+          return (
+            <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+              {context.items?.map((item) => (
+                  <Card key={item.id} item={item} />
+              ))}
+            </div>
+          )
+      }
   }
 
   return (

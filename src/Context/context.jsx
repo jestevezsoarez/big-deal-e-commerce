@@ -17,17 +17,31 @@ export const ShoppingCartProvider = ({children}) => {
     // Get products by title
     const [searchByTitle, setSearchByTitle] = useState(null);
 
+    // Get products by category
+    const [searchByCategory, setSearchByCategory] = useState(null);
+
     // Filtered products
     const [filteredItems, setFilteredItems] = useState(null);
+
     const filteredItemsByTitle = (items, searchByTitle) => {
         return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
     }
 
+    const filteredItemsByCategory = (items, searchByCategory) => {
+        if (searchByCategory?.length > 0)
+            return items?.filter(item => item.category.toLowerCase().includes(searchByCategory.toLowerCase()));
+        else
+            return items;
+    }
+
     useEffect(() => {
-        if (searchByTitle) {
+        if (searchByTitle) {       
             setFilteredItems(filteredItemsByTitle(items, searchByTitle));
         }
-    }, [searchByTitle]);
+        if (searchByCategory) {
+            setFilteredItems(filteredItemsByCategory(items, searchByCategory));
+        }
+    }, [searchByTitle, searchByCategory]);
 
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0);
@@ -73,7 +87,9 @@ export const ShoppingCartProvider = ({children}) => {
                 searchByTitle,
                 setSearchByTitle,
                 filteredItems,
-                setFilteredItems
+                setFilteredItems,
+                searchByCategory,
+                setSearchByCategory
             }}
         >
             {children}
