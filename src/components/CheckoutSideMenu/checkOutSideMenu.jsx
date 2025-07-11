@@ -18,7 +18,7 @@ const CheckOutSideMenu = () => {
 
   const handleCheckout = () => {
     const orderToAdd = {
-      date: "28.06.25",
+      date: getOrderDate(),
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPurchase(context.cartProducts),
@@ -27,6 +27,11 @@ const CheckOutSideMenu = () => {
     context.setOrder([...context.order, orderToAdd]);
     context.setCartProducts([]);
   };
+
+  const getOrderDate = () => {
+    const today = new Date();
+    return today.getDate() + "." + (today.getMonth() + 1) + "." + today.getFullYear();
+  }
 
   return (
     <aside
