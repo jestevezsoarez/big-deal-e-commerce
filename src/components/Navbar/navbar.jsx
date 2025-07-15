@@ -82,6 +82,14 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
+        <li className={linkStyle}>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            About
+          </NavLink>
+        </li>
         <li className={`text-white flex gap-1 ${linkStyle}`}>
           <ShoppingCartIcon 
             className="size-6 text-gray-300" /> 
