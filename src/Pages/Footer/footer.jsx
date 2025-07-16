@@ -33,6 +33,7 @@ function Footer() {
       <p className="text-center text-gray-700 font-medium">
         &copy; {year} - Javier Est&eacute;vez. All rights reservered.
       </p>
+      <p>This is a project designed for educational purposes. It's a simulation, purchases are not permitted.</p>
     </footer>
   );
 }

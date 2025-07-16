@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout/layout";
+import Footer from "../Footer/footer";
 
 function About() {
   return (
@@ -22,7 +23,8 @@ function About() {
             </h3>
             <p className="sm:text-lg mt-6">
               Big Deal Store is built with React 19. A navigation bar is used to
-              go to the different pages of the store.
+              go to the different pages of the store using React Router Dom.<br />
+              In this app I strongly use the Hook useContext which allows me read and subscribe to context from different components.
             </p>
           </div>
         </div>
@@ -90,6 +92,7 @@ function About() {
           </div>
         </div>
       </div>
+      <Footer />
     </Layout>
   );
 }
